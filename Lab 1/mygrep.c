@@ -3,59 +3,55 @@
 #include <string.h>
 
 
-int main()
+int main(int argc, char *argv[])
 {
-	char searchitem[31];
-	printf("Please enter the word you want to search for: ");
-	scanf("%s",searchitem);
+	char invalid_chars[] = "!@#$%^&*()`~+= <>?/,;':\[]{}|";
+	int invalid_found = 0;
 
-        char filename[31];
-        printf("Please enter the name of the file you want to search in, with the full extension: ");
-        scanf("%s",filename);
-
-//	char invalid_chars[] = "!@#$%^&*()`~+= <>?\/,;':[]{}|";
-//	int invalid_found = 0;
-
-//	int i;
-//	for (i = 0; i < strlen(invalid_chars); ++i)
-//	{
-//		if (strchr(filename, invalid_chars[i]) != NULL){
-//			invalid_found = 1;
-//			break;
-//		}
-//	}
-//	if (invalid_found == 1){
-//		printf("Invalid file name");
-//	}
-//	else{
-
-        FILE * fp;
-
-        fp = fopen(("%s",filename),"r");
-
-        char word[100];
-	int search;
-
-
-        while(fgets(word,100,fp)){
-		printf("%s\n",word);
-
-
-		search = strcasestr(word,searchitem);
-
-		if(search==0)
-		{
-			printf("\033[1;35mWord not found in line above\033[0m\n");
+	int i;
+	int len = strlen(invalid_chars);
+	for (i = 0; i < len; ++i)
+	{
+		if (strchr(argv[2], invalid_chars[i]) != NULL){
+			invalid_found = 1;
+			break;
 		}
-		else
-		{
-			printf("\033[1;31mWord found in line above!\033[0m\n");
-		}
+	}
+	if (invalid_found == 1){
+		printf("Invalid file name\n");
+	}
+	else{
+
+	int k;
+	for(k = 2; k < argc; k++){
+
+	        FILE * fp;
+
+        	fp = fopen(argv[k],"r");
+
+        	char word[100];
+		int search;
+
+
+	        while(fgets(word,100,fp)){
+
+
+			search = strcasestr(word,argv[1]);
+
+			if(search==0)
+			{
+			}
+			else
+			{
+				printf("%s\n",word);
+			}
 	}
 
 
         fclose(fp);
-//	}
+
+	}
+	}
         return(0);
 }
 
