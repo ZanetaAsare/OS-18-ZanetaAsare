@@ -21,9 +21,10 @@ int main(int argc, char *argv[])
                 printf("Invalid file name\n");
         }
         else{
-
+	int k;
+	for(k = 1; k < argc; k++){
 		FILE * fp;
-		fp = fopen(argv[1],"r");
+		fp = fopen(argv[k],"r");
 
 		char text;
 		while(!feof(fp)){
@@ -32,6 +33,7 @@ int main(int argc, char *argv[])
 		}
 
 		fclose(fp);
+	}
 	}
 		return(0);
 
