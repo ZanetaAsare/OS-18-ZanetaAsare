@@ -14,6 +14,7 @@ int main(int argc, char *argv[]){
         char com[30];
         const char s[2] = " ";
         char *token;
+	char *parameter;
 
         if (argc == 2){
                 FILE *fp;
@@ -28,11 +29,13 @@ int main(int argc, char *argv[]){
 
                         fscanf(fp,"%[^\n]",com);
                         token = strtok(com, s);
-
+			parameter = strtok(NULL,s);
 
                         if (strcmp(token,"ls") == 0){}
 
-                        if (strcmp(token,"cd") == 0){}
+                        if (strcmp(token,"cd") == 0){
+				chdir(parameter);
+			}
 
                         if (strcmp(token,"path") == 0){}
 
@@ -51,30 +54,35 @@ int main(int argc, char *argv[]){
         while(cmp != 0){
                 printf("wish> ");
                 scanf("%s",command);
-                cmp = strcmp(command,"exit");
+               // cmp = strcmp(command,"exit");
 
                 token = strtok(command,s);
+		parameter = strtok(NULL,s);
 
                 if (strcmp(token,"ls") == 0){
                         printf("In the ls domain\n");
                 }
 
                 else if (strcmp(token,"cd") == 0){
-                        printf("In the cd domain\n")
-			par = strtok(
-			chdir(par)
+                        printf("In the cd domain\n");
+			chdir(parameter);
+
                 }
 
                 else if (strcmp(token,"path") == 0){
                         printf("In the path domain\n");
                 }
 
+		else if (strcmp(token,"exit") == 0){
+			exit(0);
+		}
+
                 else{
                         printf("Command not recognisable, please try again\n");
                 }
         }
 
-        exit(0);
+
         return(0);
 
 }
