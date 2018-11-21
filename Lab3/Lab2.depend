@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1539256017 source:c:\users\user\documents\os\lab2\wish.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<unistd.h>
+
